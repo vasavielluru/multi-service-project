@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forntend-deploy
+  #labels:
+    #app: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+      tier: forntend-deploy
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: server
+        tier: forntend-deploy
+        track: stable
+    spec:
+      containers:
+      - name: nginx
+        image: gcr.io/python-project-369c1/ui-image
+        imagePullPolicy: IfNotPresent

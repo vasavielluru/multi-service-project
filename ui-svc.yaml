@@ -1,0 +1,15 @@
+apiVersion: v1                  # API version
+kind: Service                   # Type of kubernetes resource
+metadata:                     
+  name: forntend-deploy  # Name of the kubernetes resource
+  #labels:                     # Labels that will be applied to this resource
+   # app: server     # Name of the kubernetes resource
+spec:              # Exposes the service by opening a port on each node
+  selector:
+    app: server 
+    tier: forntend-deploy  # Any Pod matching the label `app=polling-app-client` will be picked up by this service
+  ports:                        # Forward incoming connections on port 80 to the target port 80 in the Pod
+  - protocol: "TCP"
+    port: 8081
+    targetPort: 80
+  type: LoadBalancer
